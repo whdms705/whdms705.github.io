@@ -41,42 +41,10 @@
     <code id="snippet" class="snippet"></code>
 </div>
 <script type="text/javascript">
-    
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    alert("지원하지않는 브라우저 입니다.");
-  }
-}
-
-function showPosition(position) {
-    alert(position.coords.latitude + " / " +position.coords.longitude);
-    $("#lat").val(position.coords.latitude);
-    $("#lng").val(position.coords.longitude);
-}
-
-
-    
-function locationConvert(search){
-	naver.maps.Service.geocode({
-        address: search
-    }, function(status, response) {
-        if (status !== naver.maps.Service.Status.OK) {
-            return alert('Something wrong!');
-        }
-
-        var result = response.result, // 검색 결과의 컨테이너
-            items = result.items; // 검색 결과의 배열
-
-        // do Something
-    });
-}
-    
-var HOME_PATH = window.HOME_PATH || '.';
-
+	
 function mark(lat ,lon){
-	var cityhall = new naver.maps.LatLng(lat, lon),
+var HOME_PATH = window.HOME_PATH || '.';
+var cityhall = new naver.maps.LatLng(lat, lon),
     map = new naver.maps.Map('map', {
         center: cityhall,
         zoom: 15
@@ -117,6 +85,43 @@ function mark(lat ,lon){
 		}
 	});
 }
+
+    
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    alert("지원하지않는 브라우저 입니다.");
+  }
+}
+
+function showPosition(position) {
+    alert(position.coords.latitude + " / " +position.coords.longitude);
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    $("#lat").val(lat);
+    $("#lng").val(lng);
+    mark(lat ,lng);
+}
+
+
+    
+function locationConvert(search){
+	naver.maps.Service.geocode({
+        address: search
+    }, function(status, response) {
+        if (status !== naver.maps.Service.Status.OK) {
+            return alert('Something wrong!');
+        }
+
+        var result = response.result, // 검색 결과의 컨테이너
+            items = result.items; // 검색 결과의 배열
+
+        // do Something
+    });
+}
+    
+
 
 
 getLocation();
