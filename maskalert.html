@@ -35,7 +35,7 @@
     <div id="map" style="width:100%;height:600px;">
     	<div class="search" style="">
             <input id="address" type="text" placeholder="검색할 주소" value="불정로 6" />
-            <input id="submit" type="button" value="주소 검색" />
+            <input id="button" type="button" value="주소 검색" onclick="search();return false;" />
         </div>
     </div>
     <code id="snippet" class="snippet"></code>
@@ -109,7 +109,9 @@ function showPosition(position) {
 }
 
 
-    
+function search(){
+	locationConvert($("#address").val());
+}
 function locationConvert(search){
 	naver.maps.Service.geocode({
         address: search
