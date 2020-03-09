@@ -63,43 +63,10 @@ var lat=0,lng=0;
         alert("Geolocation을 지원하지 않는 브라우저 입니다.");
     }
     
-    var requestParam = {"lat":$("#lat").val(),"lng":$("#lng").val(),"m":10000};
-    $.ajax({
-        url : "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json",
-        type : 'GET',
-        data : requestParam,
-        timeout: 10000,    
-        contentType:"application/json",
-        success : function(data){
-            console.log(data);
-            
-        },
-        error : function(request,status,error){
-            var err=JSON.parse(request.responseText);
-            console.log(err);
-        }
-    });
     
 });
 
-function maskInfoCall(){
-	var requestParam = {"lat":$("#lat").val(),"lng":$("#lng").val(),"m":10000};
-    $.ajax({
-        url : "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json",
-        type : 'GET',
-        data : requestParam,
-        timeout: 10000,    
-        contentType:"application/json",
-        success : function(data){
-            console.log(data);
-            
-        },
-        error : function(request,status,error){
-            var err=JSON.parse(request.responseText);
-            console.log(err);
-        }
-    });
-}
+
     
 var HOME_PATH = window.HOME_PATH || '.';
 var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
