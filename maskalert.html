@@ -27,7 +27,6 @@
 
 <input type="hidden" id="lat" value=""/>
 <input type="hidden" id="lng" value=""/>
-<input type="hidden" id="m" value=""/>
     
     
 <div id="wrap" class="section">
@@ -53,6 +52,8 @@ function getLocation() {
 
 function showPosition(position) {
     alert(position.coords.latitude + " / " +position.coords.longitude);
+    $("#lat").val(position.coords.latitude);
+    $("#lng").val(position.coords.longitude);
 }
 
 
