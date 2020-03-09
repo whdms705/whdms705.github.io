@@ -41,6 +41,8 @@
     <code id="snippet" class="snippet"></code>
 </div>
 <script type="text/javascript">
+var markerList = [];
+	
 	
 function mark(lat ,lon){
 var HOME_PATH = window.HOME_PATH || '.';
@@ -53,6 +55,8 @@ var cityhall = new naver.maps.LatLng(lat, lon),
         map: map,
         position: cityhall
     });
+	
+	markerList.push(marker);
 
 	var contentString = [
 			'<div class="iw_inner">',
