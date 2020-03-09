@@ -52,13 +52,7 @@ var lat=0,lng=0;
             
             // 위치를 가져오는데 성공할 경우
             jQuery.each(position.coords, function(key, item) {
-                jQuery("<h3></h3>").html("● " + key + " : " + item).appendTo("body");
-                if(key === "latitude"){
-                	lat = item;
-                }
-                if(key === "longitude"){
-                	lng = item;
-                }
+                console.log("key = "+key +" item = "+item);
             });
         }, function(error) {
             
