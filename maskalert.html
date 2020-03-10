@@ -72,7 +72,7 @@ function infoCall(lat ,lng){
 	
 function mark(lat ,lng){
 var HOME_PATH = window.HOME_PATH || '.';
-var cityhall = new naver.maps.LatLng(lat, lon),
+var cityhall = new naver.maps.LatLng(lat, lng),
     map = new naver.maps.Map('map', {
         center: cityhall,
         zoom: 15
