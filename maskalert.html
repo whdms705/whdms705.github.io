@@ -58,7 +58,7 @@ function infoCall(lat ,lng){
   $.ajax({
 	url : API_URL+"/storesByGeo/json",
 	type : 'GET',
-	async: true,
+	crossOrigin : true,
 	data : data,
 	timeout: 10000,
 	dataType: 'json',
