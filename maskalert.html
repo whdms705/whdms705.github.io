@@ -105,6 +105,7 @@ function showPosition(position) {
     $("#lng").val(lng);
     
     infoCall(lat ,lng);
+    allShow();
 }
 
 
@@ -130,48 +131,48 @@ var markers = [],
     infoWindows = [];
 
 function allShow(){
-	for (var key in locationLists) {
+	$.each(locationLists, function(index, key){
+		    var position = new naver.maps.LatLng(key.lat, key.lng)
 
-	    var position = new naver.maps.LatLng(key.lat, key.lng)
-
-	    var marker = new naver.maps.Marker({
-		map: map,
-		position: position,
-		title: key.name
-	    });
+		    var marker = new naver.maps.Marker({
+			map: map,
+			position: position,
+			title: key.name
+		    });
 
 
-	    var contentString = [
-		'<div class="iw_inner">',
-		'   <h3>서울특별시청</h3>',
-		'   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
-		'       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-		'       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
-		'       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
-		'   </p>',
-		'</div>'
-	    ].join('');
+		    var contentString = [
+			'<div class="iw_inner">',
+			'   <h3>서울특별시청</h3>',
+			'   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
+			'       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
+			'       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
+			'       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
+			'   </p>',
+			'</div>'
+		    ].join('');
 
-	    var infoWindow = new naver.maps.InfoWindow({
-		content: contentString,
-		maxWidth: 140,
-		backgroundColor: "#eee",
-		borderColor: "#2db400",
-		borderWidth: 5,
-		anchorSize: new naver.maps.Size(30, 30),
-		anchorSkew: true,
-		anchorColor: "#eee",
-		pixelOffset: new naver.maps.Point(20, -20)
-	    });
+		    var infoWindow = new naver.maps.InfoWindow({
+			content: contentString,
+			maxWidth: 140,
+			backgroundColor: "#eee",
+			borderColor: "#2db400",
+			borderWidth: 5,
+			anchorSize: new naver.maps.Size(30, 30),
+			anchorSkew: true,
+			anchorColor: "#eee",
+			pixelOffset: new naver.maps.Point(20, -20)
+		    });
 
-	    markers.push(marker);
-	    infoWindows.push(infoWindow);
-	};
+		    markers.push(marker);
+		    infoWindows.push(infoWindow);
+		};
 
-	naver.maps.Event.addListener(map, 'idle', function() {
-	    updateMarkers(map, markers);
+		naver.maps.Event.addListener(map, 'idle', function() {
+		    updateMarkers(map, markers);
+		});
 	});
-	
+
 }
 
 function updateMarkers(map, markers) {
@@ -225,7 +226,7 @@ for (var i=0, ii=markers.length; i<ii; i++) {
 
 
 getLocation();
-allShow()
+
 </script>
 
 </body>
