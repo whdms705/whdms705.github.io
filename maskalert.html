@@ -166,12 +166,12 @@ function allShow(){
 
 		    markers.push(marker);
 		    infoWindows.push(infoWindow);
-		};
+		});
 
 		naver.maps.Event.addListener(map, 'idle', function() {
 		    updateMarkers(map, markers);
 		});
-	});
+	
 
 }
 
