@@ -61,12 +61,15 @@ function infoCall(lat ,lng){
 
 	success : function(data){
 	    alert("success")
-	    console.log(data);
+	    console.log(data.stores);
+	    $.each(data.stores, function(index, item){
+		locationLists.push(item);
+	    });
 
 	},
 	error : function(request,status,error){
 
-	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	    var err=JSON.parse(request.responseText);
 	    console.log(err);
 	}
