@@ -51,7 +51,8 @@ function infoCall(lat ,lng){
 	type : 'GET',
 	async: true,
 	data : data,
-	timeout: 10000,    
+	timeout: 10000,
+	crossOrigin : true,
 	contentType:"application/json",
 
 	success : function(data){
