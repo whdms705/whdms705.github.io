@@ -140,18 +140,29 @@ function allShow(){
 			title: key.name
 		    });
 			
+			var contentString = '<div class="iw_inner">';
+			contentString =  contentString+'   <h3>'+key.name+'</h3>';
+			if(key.stock_at != null){
+				contentString = contentString+'   <p> <b>[입고시간]</b><br>'+key.stock_at+'</p>';
+			}else{
+				contentString = contentString+'   <p> <b>입고되지 않았습니다.</b></p>';
+			}
+			
+			if(key.remain_stat == "plenty"){
+				contentString = contentString+'   <p> <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br /> </p>';
+			}
+			if(key.remain_stat == "some"){
+				contentString = contentString+'   <p> <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br /> </p>';
+			}
+			if(key.remain_stat == "few"){
+				contentString = contentString+'   <p> <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br /></p>';
+			}
+			if(key.remain_stat == "empty"){
+				contentString = contentString+'   <p> <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br /></p>';
+			}
+			contentString = contentString+'   </div>';
+			
 	
-		    var contentString = [
-			'<div class="iw_inner">',
-			'   <h3>'+key.name+'</h3>',
-			'   <p> <b>[변경시간]</b>'+key.stock_at+'</p>',
-			'   <p>'+key.addr+'<br />',
-			'       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-			'       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
-			'       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
-			'   </p>',
-			'</div>'
-		    ].join('');
 
 		    var infoWindow = new naver.maps.InfoWindow({
 			content: contentString,
