@@ -47,7 +47,7 @@ var API_URL = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1";
 var map;
 	
 function infoCall(lat ,lng){
-  var data = {"lat":lat,"lng":lng,"m":1000};
+  var data = {"lat":lat,"lng":lng,"m":3000};
   $.ajaxPrefilter('json', function(options, orig, jqXHR) { 
 	  if (options.crossDomain && !$.support.cors) return 'jsonp' 
   });
@@ -102,7 +102,7 @@ function showPosition(position) {
     $("#lng").val(lng);
     map = new naver.maps.Map('map', {
 	    center: new naver.maps.LatLng(lat, lng),
-	    zoom: 10
+	    zoom: 15
 	});
     infoCall(lat ,lng);
     //allShow();
@@ -139,12 +139,13 @@ function allShow(){
 			position: position,
 			title: key.name
 		    });
-
-
+			
+	
 		    var contentString = [
 			'<div class="iw_inner">',
-			'   <h3>서울특별시청</h3>',
-			'   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
+			'   <h3>'+key.name+'</h3>',
+			'   <p> <b>[변경시간]</b>'+key.stock_at+'</p>',
+			'   <p>'+key.addr+'<br />',
 			'       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
 			'       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
 			'       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
@@ -167,13 +168,19 @@ function allShow(){
 		    markers.push(marker);
 		    infoWindows.push(infoWindow);
 		});
+		
+	
+	for (var i=0, ii=markers.length; i<ii; i++) {
+		naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+	}
 
-		naver.maps.Event.addListener(map, 'idle', function() {
-		    updateMarkers(map, markers);
-		});
+		//naver.maps.Event.addListener(map, 'idle', function() {
+		  //  updateMarkers(map, markers);
+		//});
 	
 
 }
+
 
 function updateMarkers(map, markers) {
 
@@ -219,13 +226,9 @@ function getClickHandler(seq) {
     }
 }
 
-for (var i=0, ii=markers.length; i<ii; i++) {
-    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
-}
-
-
-
 getLocation();
+
+
 
 </script>
 
